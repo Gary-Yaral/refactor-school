@@ -1,0 +1,6 @@
+[
+    {
+        "name": "Test",
+        "category": "Game"
+    }
+]
