@@ -24,7 +24,7 @@ body.onclick = (e) => {
 
     if(close) {
         localStorage.removeItem(storeKey)
-        window.location = "/logAdmin"
+        window.location = "/"
     }
 
 }

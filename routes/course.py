@@ -84,3 +84,57 @@ def delete(mongo):
         "message": "Aula ha sido eliminada"
     })
 
+def update(mongo):
+    if request.method == "POST":
+        courses = mongo.db.Courses
+        id = ObjectId(request.form["id_course"])
+        teacher = ObjectId(request.form["teacher_update"])
+        course = request.form["course_update"]
+        parallel = request.form["parallel_update"]
+        limit = request.form["limit_update"]
+
+        # Verificar que no exista
+        found_course = courses.find_one({
+            "name": course,
+            "parallel": parallel
+        })
+
+        if found_course != None:
+            print(dumps(found_course))
+            # Verificamos si no es el mismo
+            isSame = found_course["_id"] == id
+            if isSame == False:
+                return jsonify({
+                    "error": "Aula ya existe"
+                })
+
+        # Verificamos que el docente no esté asignado aún
+        found_teacher = courses.find_one({"teacher": teacher})
+        if found_teacher != None:
+            # Verificamos si no es el mismo
+            isSame = found_teacher["_id"] == id
+            if isSame == False:
+                return jsonify({
+                    "error": "Docente ya tiene aula asignada"
+                })
+
+        courses.find_one_and_update(
+            {
+                "_id": ObjectId(id) 
+            },
+            {
+                "$set": {
+                    "course": course,
+                    "parallel": parallel,
+                    "teacher": teacher,
+                    "limit": limit
+                }
+            }
+        )
+
+        return jsonify({
+            "updated": True,
+            "message": "Aula ha sido actualizada"
+        })
+        
+        

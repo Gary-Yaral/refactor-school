@@ -1,5 +1,6 @@
 from flask import request, Response, jsonify
 from bson.json_util import dumps
+import json
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -56,8 +57,47 @@ def delete(mongo):
             "message": "Docente eliminado correctamente"
         })
 
+def update(mongo):
+    if request.method == 'POST':
+        users = mongo.db.Users
+        id = ObjectId(request.form["id"])
+        name = request.form["name"]
+        dni = request.form["dni"]
+
+        found_teacher = users.find_one({"dni": dni})
+        print(found_teacher)
+        # Veriifcamos si ya existe esa cedula
+        if found_teacher != None:
+            isSame = found_teacher['_id'] == id
+            if isSame == False:
+                return jsonify({
+                    "error": "Este usuario ya existe"
+                })
+
+        password = generate_password_hash(dni, "sha256", 10)
+        users.find_one_and_update(
+            {
+                "_id": id
+            },
+            {
+                "$set": {
+                    "name": name,
+                    "dni": dni,
+                    "username": "doc_"+dni,
+                    "password": password
+                }
+            }
+        )
+
+        return jsonify({
+            "updated": True, 
+            "message": "Docente actualizado correctamente"
+        })
+
+
 def validateAccess(mongo):
     users = mongo.db.Users
+    courses = mongo.db.Courses
     username = request.form['username']
     password = request.form['password']
     rol_admin = "Teacher"
@@ -73,16 +113,13 @@ def validateAccess(mongo):
             "error": "Usuario no es valido"
         })  
 
+
     passwordIsValid = check_password_hash(login_user["password"], password)
     if passwordIsValid:
+        course = courses.find_one({"teacher": login_user["_id"]})
         data = dumps({
             "access": True,
-            "data": login_user
+            "data": login_user,
+            "course": course
         })
-
         return Response(data, mimetype="application/json")
-    else:
-        return jsonify ({
-            "access": False,
-            "error": "Contraseña incorrecta"
-        })

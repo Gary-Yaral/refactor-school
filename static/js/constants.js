@@ -12,7 +12,8 @@ let sessionStudent = {
     courseName: "", 
     studentID: "",
     note: "",
-    time: ""
+    time: 0,
+    stars: 0
 }
 
 let sessionTeacher = {

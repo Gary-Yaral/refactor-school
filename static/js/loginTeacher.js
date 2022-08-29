@@ -60,9 +60,12 @@ form.addEventListener("submit", async(e) => {
         })
 
         let result = await response.json()
+        console.log(result)
         if(result.access) {
+            let courseData = result.course
             sessionTeacher.id = result.data._id.$oid
             sessionTeacher.name = result.data.name
+            sessionTeacher.course = courseData.course + " " + courseData.parallel
             localStorage.setItem(storeKeyTeachers, JSON.stringify(sessionTeacher))
             window.location = "/notes"
         } else {

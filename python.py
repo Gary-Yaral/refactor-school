@@ -1,4 +1,5 @@
 
+from cgi import test
 from flask import Flask, render_template
 from flask_pymongo import PyMongo
 import routes.login as login
@@ -6,6 +7,7 @@ import routes.course as course
 import routes.teacher as teacher
 import routes.colors as colors
 import routes.student as student
+import routes.test as test
 
 app = Flask(__name__, template_folder='templates')
 
@@ -76,6 +78,16 @@ def get_teachers():
 def get_courses():
     return course.getAll(mongo)
 
+# Gets all tests -------------------------
+@app.route('/get-tests', methods=['GET'])
+def get_tests():
+    return test.get(mongo)
+
+# Updates one Teacher -----------------------
+@app.route('/update-teacher', methods=['POST'])
+def update_teacher():
+    return teacher.update(mongo)
+
 # Deletes one Teacher -----------------------
 @app.route('/delete-teacher', methods=['POST'])
 def delete_teacher():
@@ -86,6 +98,11 @@ def delete_teacher():
 def delete_student():
     return student.delete(mongo)
 
+# Updates one student -----------------------
+@app.route('/update-student', methods=['POST'])
+def update_student():
+    return student.update(mongo)
+
 # Deletes one course -----------------------
 @app.route('/delete-course', methods=['POST'])
 def delete_course():
@@ -95,6 +112,11 @@ def delete_course():
 @app.route('/course', methods=['POST', "GET"])
 def login_students():
     return render_template("/logCourse.html")
+
+# Updates one course ---------------
+@app.route('/update-course', methods=['POST'])
+def udpate_course():
+    return course.update(mongo)
 
 # Show all registered courses ---------------
 @app.route('/select-student', methods=["GET"])
@@ -130,6 +152,11 @@ def show_test():
 @app.route('/stars', methods=['POST', "GET"])
 def show_stars():
     return render_template("/stars.html")
+
+# Saves test -----
+@app.route('/save-test', methods=['POST'])
+def save_test():
+    return test.save(mongo)
 
 
 
