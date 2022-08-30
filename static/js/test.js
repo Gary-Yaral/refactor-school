@@ -48,13 +48,13 @@ blockImg.onclick = (e) => {
 
         if (clicks === obj.length) {
             if(colors.length === obj.length) {
-                Swal.fire("OK", "Ganaste!!!", "success")
+                Swal.fire("OK", "😃 Ganaste!!!", "success")
                 .then(ok => {
                     sendData(true)
                     return window.location = "stars"
                 })
             } else {
-                Swal.fire("OWwww!", "Perdiste!", "warning")
+                Swal.fire("OWwww!", "🙂 Tú puedes!!. Intentalo de nuevo!", "warning")
                 .then(ok => {
                     let heart = document.querySelectorAll('.heart')
                     if(heart.length === 1) {

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Seleccion Usuarios</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--Stylesheet-->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+  body {
+    background: url(https://rare-gallery.com/thumbs/866852-School-Schoolgirls.jpg) no-repeat center center fixed;
+    background-size: cover;
+    max-height: 718px;
+    font-family: 'Poppins';
+  }
+
+  #prueba {
+    background-color: black;
+    opacity: 85%;
+  }
+
+  #titleUser {
+    font-size: 50px;
+    text-align: center;
+    font-weight: bolder;
+    color: rgb(18, 231, 217);
+  }
+
+  .container-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .custom-row {
+    width: 400px;
+    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 3rem;
+    justify-content: center;
+  }
+
+  .card-custom {
+    width: 100%;
+    position: relative;
+    background: white;
+    box-sizing: border-box;
+    border: 2px solid rgb(255, 165, 47);
+  }
+
+  .card-custom img {
+    width: 100%;
+    display: flex;
+    align-self: center;
+  }
+
+  .custom-body {
+    height: 6rem;
+    background: rgb(206, 229, 0);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .custom-body label {
+    font-size: 1.5rem;
+    color:rgb(33, 36, 0)
+  }
+  
+  .custom-body a{
+    height: 2rem;
+    color:rgb(0, 255, 217);
+    text-decoration: none;
+    background: black;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  .custom-body a:hover{
+    background: rgb(30, 30, 30);
+    
+  }
+
+
+</style>
+
+<body>
+  <div class="container-main">
+    <div class="custom-row">
+      <div class="card-custom">
+        <img src="https://cdn-icons-png.flaticon.com/512/81/81591.png" class="img-fluid rounded-start" alt="...">
+        <div class="custom-body">
+          <label>Admin</label>
+          <a href="/main" class="">Acceder</a>
+        </div>
+      </div>
+      <div class="card-custom">
+        <img src="https://cdn.pixabay.com/photo/2014/04/03/09/59/teacher-309533_1280.png"
+          class="img-fluid rounded-start" alt="...">
+        <div class="custom-body">
+          <label>Docente</label>
+          <a href="/teacher" class="btn btn-primary">Acceder</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Texto-->
+  <div id="prueba" class="container text-center ">
+    <h1 id="titleUser">UNIDAD EDUCATIVA GOTITAS EL SABER</h1>
+    <h1 id="titleUser">Jugar es la mejor forma en que los niños aprenden!</h1>
+    <h1 id="titleUser">LC & JO</h1>
+  </div>
+</body>
+
+</html>

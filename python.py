@@ -16,15 +16,18 @@ app.config['MONGO_DBNAME'] = 'Proyecto-U3'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/Proyecto-U3'
 
 mongo = PyMongo(app)
+# Shows principal pane
+@app.route('/')
+def show_main_pane():
+    return render_template('/selUser.html')
 
 # Validates the admin credentials
 @app.route('/login-admin', methods=['POST'])
 def validate_access_admin():
     return login.validateAccess(mongo)
 
-
 # Shows login form of the admin
-@app.route('/')
+@app.route('/main')
 def show_teacher_form():
     return render_template('/logAdmin.html')
 

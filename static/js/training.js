@@ -51,18 +51,17 @@ blockImg.onclick = (e) => {
                 colors.push(color)
             }
         }
-
-        console.log(colors)
+        
         if (clicks === obj.length) {
             if(colors.length === obj.length) {
-                Swal.fire("OK", "Ganaste!!!", "success")
+                Swal.fire("OK", "😃 Ganaste!!!", "success")
                 .then(ok => {
                     lifes = 0
                     localStorage.setItem(keyStore, JSON.stringify({lifes}))
                     window.location = ""
                 })
             } else {
-                Swal.fire("OWwww!", "Perdiste!", "warning")
+                Swal.fire("OWwww!", "🙂 Tú puedes!!. Intentalo de nuevo!", "warning")
                 .then(ok => {
                     lifes++
                     if(lifes === 3) {

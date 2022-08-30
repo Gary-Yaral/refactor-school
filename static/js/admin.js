@@ -4,7 +4,7 @@ let period = document.querySelector('#period')
 let body = document.querySelector('body')
 let iframe = body.querySelector('#views')
 let sessionAdmin = localStorage.getItem(storeKey)
-if(!sessionAdmin) window.location = "/"
+if(!sessionAdmin) window.location = "/main"
 let dataAdmin = JSON.parse(sessionAdmin)
 let signed = document.querySelector("#signed")
 let year = new Date().getFullYear()
@@ -24,7 +24,7 @@ body.onclick = (e) => {
 
     if(close) {
         localStorage.removeItem(storeKey)
-        window.location = "/"
+        window.location = "/main"
     }
 
 }
